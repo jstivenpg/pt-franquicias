@@ -1,13 +1,13 @@
-package com.nequi.franquicias;
+package com.nequi.franchises;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FranquiciasApplication {
+public class FranchisesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FranquiciasApplication.class, args);
+		SpringApplication.run(FranchisesApplication.class, args);
 	}
 
 }
