@@ -1,0 +1,13 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: ${APP_NAME:back-ms-demo-java}
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/develop_db}
+    username: ${DB_USER:develop_user}
+    password: ${DB_PASSWORD:develop_password}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
