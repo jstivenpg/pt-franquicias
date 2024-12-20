@@ -1,8 +1,5 @@
-package com.nequi.franchises.branch.infrastructure.persistence.postgres;
+package com.nequi.franchises.product.infrastructure.persistence.postgres;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.nequi.franchises.franchise.infrastructure.persistence.postgres.FranchiseModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,16 +14,12 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "branchs")
-public class BranchModel  implements Serializable{
+@Table(name = "products")
+public class ProductModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long branchId;
+    private Long productId;
     private String name;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "franchise_id")
-    @JsonIgnoreProperties({"branches"})
-    private FranchiseModel franchise;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
 

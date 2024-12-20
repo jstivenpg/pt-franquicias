@@ -17,7 +17,10 @@ public enum ResponseCode {
     BRANCH_NOT_DELETED("APP_GE_04", 400, "Branch not deleted"),
 
     FRANCHISE_NOT_FOUND("APP_GE_04", 404, "Franchise not found"),
-    FRANCHISE_NOT_DELETED("APP_GE_05", 400, "Franchise not deleted");
+    FRANCHISE_NOT_DELETED("APP_GE_05", 400, "Franchise not deleted"),
+
+    PRODUCT_NOT_FOUND("APP_GE_06", 404, "Product not found"),
+    PRODUCT_NOT_DELETED("APP_GE_07", 400, "Product not deleted");
 
     private final String code;
     private final int httpStatus;

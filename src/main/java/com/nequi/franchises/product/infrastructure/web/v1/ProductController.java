@@ -1,7 +1,7 @@
-package com.nequi.franchises.branch.infrastructure.web.v1;
+package com.nequi.franchises.product.infrastructure.web.v1;
 
-import com.nequi.franchises.branch.application.ports.in.BranchService;
-import com.nequi.franchises.branch.infrastructure.web.dtos.BranchDTO;
+import com.nequi.franchises.product.application.ports.in.ProductService;
+import com.nequi.franchises.product.infrastructure.web.dtos.ProductDTO;
 import com.nequi.franchises.shared.application.dtos.GeneralResponse;
 import com.nequi.franchises.shared.application.exceptions.ErrorResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/branches")
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
-@Tag(name = "branchs", description = "API to manage branchs")
-public class BranchController {
+@Tag(name = "products", description = "API to manage products")
+public class ProductController {
 
-    private final BranchService branchService;
+    private final ProductService productService;
 
-    @Operation(summary = "Find all branchs", tags = {"branchs", "GET"})
+    @Operation(summary = "Find all products", tags = {"products", "GET"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Branch list"),
+            @ApiResponse(responseCode = "200", description = "Product list"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = {
                     @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class))
@@ -34,14 +34,14 @@ public class BranchController {
     })
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public GeneralResponse<List<BranchDTO>> getAllBranchs(){
-        return branchService.getAllBranchs();
+    public GeneralResponse<List<ProductDTO>> getAllProducts(){
+        return productService.getAllProducts();
     }
 
-    @Operation(summary = "Find a branch by id", tags = {"branchs", "GET"})
+    @Operation(summary = "Find a product by id", tags = {"products", "GET"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Branch get by id"),
-            @ApiResponse(responseCode = "404", description = "Branch not found", content = {
+            @ApiResponse(responseCode = "200", description = "Product get by id"),
+            @ApiResponse(responseCode = "404", description = "Product not found", content = {
                     @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             }),
@@ -50,15 +50,15 @@ public class BranchController {
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             })
     })
-    @GetMapping("/{branchId}")
+    @GetMapping("/{productId}")
     @ResponseStatus(HttpStatus.OK)
-    public GeneralResponse<BranchDTO> getBranchById(@PathVariable Long branchId){
-        return branchService.getBranchById(branchId);
+    public GeneralResponse<ProductDTO> getProductById(@PathVariable Long productId){
+        return productService.getProductById(productId);
     }
 
-    @Operation(summary = "Create a branch", tags = {"branchs", "POST"})
+    @Operation(summary = "Create a product", tags = {"products", "POST"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Branch created"),
+            @ApiResponse(responseCode = "201", description = "Product created"),
             @ApiResponse(responseCode = "400", description = "Bad request", content = {
                     @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class))
@@ -70,18 +70,18 @@ public class BranchController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GeneralResponse<BranchDTO> createBranch(@RequestBody BranchDTO branch){
-        return branchService.createBranch(branch);
+    public GeneralResponse<ProductDTO> createProduct(@RequestBody ProductDTO product){
+        return productService.createProduct(product);
     }
 
-    @Operation(summary = "Update a branch", tags = {"branchs", "PUT"})
+    @Operation(summary = "Update a product", tags = {"products", "PUT"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Branch created"),
+            @ApiResponse(responseCode = "201", description = "Product created"),
             @ApiResponse(responseCode = "400", description = "Bad request", content = {
                     @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             }),
-            @ApiResponse(responseCode = "404", description = "Branch not found", content = {
+            @ApiResponse(responseCode = "404", description = "Product not found", content = {
                     @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             }),
@@ -90,20 +90,20 @@ public class BranchController {
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             })
     })
-    @PutMapping("/{branchId}")
+    @PutMapping("/{productId}")
     @ResponseStatus(HttpStatus.OK)
-    public GeneralResponse<BranchDTO> updateBranch(@PathVariable Long branchId, @RequestBody BranchDTO branch){
-        return branchService.updateBranch(branchId, branch);
+    public GeneralResponse<ProductDTO> updateProduct(@PathVariable Long productId, @RequestBody ProductDTO product){
+        return productService.updateProduct(productId, product);
     }
 
-    @Operation(summary = "Delete a branch", tags = {"branchs", "DELETE"})
+    @Operation(summary = "Delete a product", tags = {"products", "DELETE"})
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Branch deleted"),
+            @ApiResponse(responseCode = "204", description = "Product deleted"),
             @ApiResponse(responseCode = "400", description = "Bad request", content = {
                     @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             }),
-            @ApiResponse(responseCode = "404", description = "Branch not found", content = {
+            @ApiResponse(responseCode = "404", description = "Product not found", content = {
                     @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             }),
@@ -112,9 +112,9 @@ public class BranchController {
                             schema = @Schema(implementation = ErrorResponseDTO.class))
             })
     })
-    @DeleteMapping("/{branchId}")
+    @DeleteMapping("/{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBranch(@PathVariable Long branchId){
-        branchService.deleteBranch(branchId);
+    public void deleteProduct(@PathVariable Long productId){
+        productService.deleteProduct(productId);
     }
 }

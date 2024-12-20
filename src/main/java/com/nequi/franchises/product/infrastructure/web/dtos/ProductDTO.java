@@ -1,16 +1,14 @@
-package com.nequi.franchises.branch.infrastructure.web.dtos;
+package com.nequi.franchises.product.infrastructure.web.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nequi.franchises.franchise.infrastructure.web.dtos.FranchiseDTO;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public record BranchDTO(
-    @JsonProperty("branch_id")
-    Long branchId,
+public record ProductDTO(
+    @JsonProperty("product_id")
+    Long productId,
     String name,
-    FranchiseDTO franchise,
     @JsonProperty("created_at")
     ZonedDateTime createdAt,
     @JsonProperty("updated_at")
