@@ -1,7 +1,6 @@
 package com.nequi.franchises.branch.infrastructure.persistence.postgres;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nequi.franchises.franchise.infrastructure.persistence.postgres.FranchiseModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,9 +22,9 @@ public class BranchModel  implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long branchId;
     private String name;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "franchise_id")
-    @JsonIgnoreProperties({"branches"})
+    @JsonBackReference
     private FranchiseModel franchise;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;

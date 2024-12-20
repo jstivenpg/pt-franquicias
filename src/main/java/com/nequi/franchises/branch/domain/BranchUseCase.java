@@ -24,8 +24,7 @@ public class BranchUseCase implements BranchService {
 
     @Override
     public GeneralResponse<List<BranchDTO>> getAllBranchs() {
-        List<Branch> branchsEntity = branchRepository.findAll();
-        List<BranchDTO> branchsDto = branchMapper.branchListToDto(branchsEntity);
+        List<BranchDTO> branchsDto = branchRepository.findAll().stream().map(branchMapper::branchToDto).toList();
 
         return new GeneralResponse<>(branchsDto);
     }

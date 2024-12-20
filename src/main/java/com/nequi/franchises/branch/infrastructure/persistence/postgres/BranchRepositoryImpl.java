@@ -17,9 +17,7 @@ public class BranchRepositoryImpl implements BranchRepository {
 
     @Override
     public List<Branch> findAll() {
-        List<BranchModel> branchsModel = branchJpa.findAll();
-
-        return branchMapper.branchModelListToBranch(branchsModel);
+        return branchJpa.findAll().stream().map(branchMapper::branchModelToBranch).toList();
     }
 
     @Override

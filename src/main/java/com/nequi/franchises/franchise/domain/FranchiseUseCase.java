@@ -24,8 +24,9 @@ public class FranchiseUseCase implements FranchiseService {
 
     @Override
     public GeneralResponse<List<FranchiseDTO>> getAllFranchises() {
-        List<Franchise> franchisesEntity = franchiseRepository.findAll();
-        List<FranchiseDTO> franchisesDto = franchiseMapper.franchiseListToDto(franchisesEntity);
+        List<FranchiseDTO> franchisesDto = franchiseRepository.findAll().stream().map(
+                franchiseMapper::franchiseToDto
+        ).toList();
 
         return new GeneralResponse<>(franchisesDto);
     }

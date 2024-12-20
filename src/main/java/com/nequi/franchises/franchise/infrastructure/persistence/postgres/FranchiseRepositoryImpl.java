@@ -3,8 +3,6 @@ package com.nequi.franchises.franchise.infrastructure.persistence.postgres;
 import com.nequi.franchises.franchise.application.mappers.FranchiseMapper;
 import com.nequi.franchises.franchise.application.ports.out.FranchiseRepository;
 import com.nequi.franchises.franchise.domain.Franchise;
-import com.nequi.franchises.franchise.infrastructure.persistence.postgres.FranchiseJpa;
-import com.nequi.franchises.franchise.infrastructure.persistence.postgres.FranchiseModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +17,7 @@ public class FranchiseRepositoryImpl implements FranchiseRepository {
 
     @Override
     public List<Franchise> findAll() {
-        List<FranchiseModel> franchisesModel = franchiseJpa.findAll();
-
-        return franchiseMapper.franchiseModelListToFranchise(franchisesModel);
+        return franchiseJpa.findAll().stream().map(franchiseMapper::franchiseModelToFranchise).toList();
     }
 
     @Override
