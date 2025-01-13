@@ -20,6 +20,8 @@ public class ProductModel implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     private String name;
+    private Long stock;
+    private Long branchId;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
 

@@ -53,6 +53,7 @@ public class ProductUseCase implements ProductService {
         Product productEntity = productRepository.getById(productId);
 
         productEntity.setProductId(productId);
+        productEntity.setStock(product.stock());
         Optional.ofNullable(product.name()).ifPresent(productEntity::setName);
 
         return new GeneralResponse<>(saveProduct(productEntity));

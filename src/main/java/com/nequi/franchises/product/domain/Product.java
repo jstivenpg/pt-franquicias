@@ -15,6 +15,8 @@ import java.time.ZonedDateTime;
 public class Product implements Serializable {
     private Long productId;
     private String name;
+    private Long stock;
+    private Long branchId;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
 }

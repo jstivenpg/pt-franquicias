@@ -9,6 +9,8 @@ public record ProductDTO(
     @JsonProperty("product_id")
     Long productId,
     String name,
+    Long stock,
+    Long branchId,
     @JsonProperty("created_at")
     ZonedDateTime createdAt,
     @JsonProperty("updated_at")
