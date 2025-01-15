@@ -8,6 +8,7 @@ import java.util.List;
 public interface ProductService {
     GeneralResponse<List<ProductDTO>> getAllProducts();
     GeneralResponse<ProductDTO> getProductById(Long productId);
+    GeneralResponse<List<ProductDTO>> getMaxStockProductsByFranchiseId(Long franchiseId);
     GeneralResponse<ProductDTO> createProduct(ProductDTO product);
     GeneralResponse<ProductDTO> updateProduct(Long productId, ProductDTO product);
     void deleteProduct(Long productId);

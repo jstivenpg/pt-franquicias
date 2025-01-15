@@ -7,6 +7,7 @@ import java.util.List;
 public interface BranchRepository {
     List<Branch> findAll();
     Branch getById(Long branchId);
+    List<Branch> getByFranchiseId(Long franchiseId);
     Branch save (Branch branch);
     void delete(Long branchId);
 }

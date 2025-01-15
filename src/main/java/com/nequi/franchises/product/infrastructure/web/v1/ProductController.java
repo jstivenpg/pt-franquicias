@@ -56,6 +56,26 @@ public class ProductController {
         return productService.getProductById(productId);
     }
 
+
+    @Operation(summary = "Find a product with maximum stock per branch and franchise",
+            tags = {"products", "GET"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Product with maximum stock per branch and franchise"),
+            @ApiResponse(responseCode = "404", description = "Product not found", content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponseDTO.class))
+            }),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = {
+                    @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ErrorResponseDTO.class))
+            })
+    })
+    @GetMapping("/franchise/{franchiseId}")
+    @ResponseStatus(HttpStatus.OK)
+    public GeneralResponse<List<ProductDTO>> getMaxStockProducts(@PathVariable Long franchiseId) {
+        return productService.getMaxStockProductsByFranchiseId(franchiseId);
+    }
+
     @Operation(summary = "Create a product", tags = {"products", "POST"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Product created"),

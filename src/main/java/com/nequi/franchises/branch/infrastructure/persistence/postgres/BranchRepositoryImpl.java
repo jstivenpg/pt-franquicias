@@ -23,8 +23,12 @@ public class BranchRepositoryImpl implements BranchRepository {
     @Override
     public Branch getById(Long branchId) {
         BranchModel branchModel = branchJpa.findById(branchId).orElse(null);
-
         return branchMapper.branchModelToBranch(branchModel);
+    }
+
+    @Override
+    public List<Branch> getByFranchiseId(Long franchiseId) {
+        return branchJpa.findByFranchise_FranchiseId(franchiseId).stream().map(branchMapper::branchModelToBranch).toList();
     }
 
     @Override

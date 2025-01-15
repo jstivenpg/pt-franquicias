@@ -6,10 +6,15 @@ import com.nequi.franchises.branch.infrastructure.persistence.postgres.BranchMod
 import com.nequi.franchises.franchise.domain.Franchise;
 import com.nequi.franchises.franchise.infrastructure.persistence.postgres.FranchiseModel;
 import com.nequi.franchises.franchise.infrastructure.web.dtos.FranchiseDTO;
+import com.nequi.franchises.product.domain.Product;
+import com.nequi.franchises.product.infrastructure.persistence.postgres.ProductModel;
+import com.nequi.franchises.product.infrastructure.web.dtos.ProductDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring",
         unmappedSourcePolicy = ReportingPolicy.ERROR,
@@ -21,11 +26,19 @@ public interface BranchMapper {
     @Mapping(target = "franchise", source = "franchise", qualifiedByName = "toFranchiseDTO")
     BranchDTO branchToDto(Branch branch);
 
+    List<Branch> dtoListToBranch(List<BranchDTO> branchDTO);
+    List<BranchDTO> branchListToDto(List<Branch> branch);
+
     // BranchEntity domain -> BranchModel adapter and reverse
     @Mapping(target = "franchise", source = "franchise", qualifiedByName = "toFranchise")
     Branch branchModelToBranch(BranchModel branchModel);
     @Mapping(target = "franchise", source = "franchise", qualifiedByName = "toFranchiseModel")
     BranchModel branchToBranchModel(Branch branch);
+
+    // ProductEntity domain -> ProductModel adapter and reverse
+    List<Branch> branchModelListToBranch(List<BranchModel> branchModel);
+    List<BranchModel> branchListToBranchModel(List<Branch> branch);
+
 
     // Use this for mapping
     @Named("toFranchise")

@@ -1,5 +1,6 @@
 package com.nequi.franchises.product.infrastructure.persistence.postgres;
 
+import com.nequi.franchises.branch.infrastructure.persistence.postgres.BranchJpa;
 import com.nequi.franchises.product.application.mappers.ProductMapper;
 import com.nequi.franchises.product.application.ports.out.ProductRepository;
 import com.nequi.franchises.product.domain.Product;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ProductRepositoryImpl implements ProductRepository {
 
     private final ProductJpa productJpa;
+    private final BranchJpa branchJpa;
     private final ProductMapper productMapper;
 
     @Override
@@ -29,6 +31,13 @@ public class ProductRepositoryImpl implements ProductRepository {
         ProductModel productModel = productJpa.findById(productId).orElse(null);
 
         return productMapper.productModelToProduct(productModel);
+    }
+
+    @Override
+    public List<Product> getMaxStockProductsByFranchiseId(List<Long> branchId) {
+
+        List<ProductModel> productsModel = productJpa.findMaxStockProductsByFranchiseId(branchId);
+        return productMapper.productModelListToProduct(productsModel);
     }
 
     @Override
